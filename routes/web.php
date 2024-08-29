@@ -15,6 +15,7 @@ Route::get('/posts', function () {
     return view('posts', ['title' => 'Blog', 'posts' =>[
     [
         'id'=> 1,
+        'slug' => 'judul-artikel-1',
 'title' => 'Judul Artikel 1',
 'author' => 'Robi Permana',
 'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deserunt iure rerum
@@ -25,6 +26,7 @@ Route::get('/posts', function () {
     [
         'id'=> 2,
         'title' => 'Judul Artikel 2',
+        'slug' => 'judul-artikel-2',
         'author' => 'Robi Permana',
         'body'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate explicabo
             cupiditate cum, maiores aspernatur suscipit minima nostrum minus fugiat doloribus necessitatibus quos velit
@@ -33,6 +35,7 @@ Route::get('/posts', function () {
             ],
     [
         'id'=> 3,
+        'slug' => 'judul-artikel-3',
         'title' => 'Judul Artikel 3',
         'author' => 'Robi Permana',
         'body'=> 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum, fuga.'
@@ -40,11 +43,12 @@ Route::get('/posts', function () {
 ]]);
 });
 
-Route::get('/posts/{id}', function($id){
+Route::get('/posts/{slug}', function($slug){
     $posts =
     [
         [
-            'id'=> 1,
+        'id'=> 1,
+        'slug' => 'judul-artikel-1',
     'title' => 'Judul Artikel 1',
     'author' => 'Robi Permana',
     'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deserunt iure rerum
@@ -54,6 +58,7 @@ Route::get('/posts/{id}', function($id){
         ],
         [
             'id'=> 2,
+            'slug' => 'judul-artikel-2',
             'title' => 'Judul Artikel 2',
             'author' => 'Robi Permana',
             'body'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate explicabo
@@ -63,16 +68,18 @@ Route::get('/posts/{id}', function($id){
                 ],
         [
             'id'=> 3,
+            'slug' => 'judul-artikel-3',
             'title' => 'Judul Artikel 3',
             'author' => 'Robi Permana',
             'body'=> 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum, fuga.'
         ],
     ] ;
 
-    $post = Arr::first($posts, function ($post) use($id) {
-        return $post['id'] == $id;
+    $post = Arr::first($posts, function ($post) use($slug) {
+        return $post['slug'] == $slug;
     });
-});
+return view('post', ['title' => 'Single Post', 'post'=> $post]);
+   });
 
 Route::get('/kontak', function () {
     return view('kontak', ['title' => 'Contact']);
