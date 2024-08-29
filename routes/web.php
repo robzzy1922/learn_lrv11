@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -67,6 +68,10 @@ Route::get('/posts/{id}', function($id){
             'body'=> 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum, fuga.'
         ],
     ] ;
+
+    $post = Arr::first($posts, function ($post) use($id) {
+        return $post['id'] == $id;
+    });
 });
 
 Route::get('/kontak', function () {
