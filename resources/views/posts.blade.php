@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
 
-    {{-- Artikel --}}
+    {{-- Artikel All --}}
 
     @foreach ($posts as $post)
         <article class="py-8 max-w-screen-md border-b border-gray-500">
