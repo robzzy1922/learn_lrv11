@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:title>{{ $title }}</x-slot:title>
 
-    {{-- Artikel --}}
+    {{-- Single Article --}}
 
 
     <article class="py-8 max-w-screen-md border-b border-gray-500">
