@@ -3,7 +3,7 @@ namespace App\Models;
 
 use Illuminate\Support\Arr;
 
-
+//membuat model sendiri 
 
 class Post {
     public static function all()
