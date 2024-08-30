@@ -1,7 +1,11 @@
 <?php
 
+use App\Models\Post;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Route;
+
+
+
 
 Route::get('/', function () {
     return view('home', ['name' => 'Robi Permana','title' => 'Home']);
@@ -12,72 +16,12 @@ Route::get('/about', function () {
 });
 
 Route::get('/posts', function () {
-    return view('posts', ['title' => 'Blog', 'posts' =>[
-    [
-        'id'=> 1,
-        'slug' => 'judul-artikel-1',
-'title' => 'Judul Artikel 1',
-'author' => 'Robi Permana',
-'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deserunt iure rerum
-            veniam ullam dicta
-            labore
-            expedita aliquam, totam eos.'
-    ],
-    [
-        'id'=> 2,
-        'title' => 'Judul Artikel 2',
-        'slug' => 'judul-artikel-2',
-        'author' => 'Robi Permana',
-        'body'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate explicabo
-            cupiditate cum, maiores aspernatur suscipit minima nostrum minus fugiat doloribus necessitatibus quos velit
-            deserunt iste nulla saepe hic impedit error. Nihil doloribus totam natus perferendis a cum nemo, qui, minima
-            asperiores necessitatibus atque error porro dolores ad officia harum neque.'
-            ],
-    [
-        'id'=> 3,
-        'slug' => 'judul-artikel-3',
-        'title' => 'Judul Artikel 3',
-        'author' => 'Robi Permana',
-        'body'=> 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum, fuga.'
-    ],
-]]);
+    return view('posts', ['title' => 'Blog', 'posts' => Post::all()]);
 });
 
 Route::get('/posts/{slug}', function($slug){
-    $posts =
-    [
-        [
-        'id'=> 1,
-        'slug' => 'judul-artikel-1',
-    'title' => 'Judul Artikel 1',
-    'author' => 'Robi Permana',
-    'body'=> 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet deserunt iure rerum
-                veniam ullam dicta
-                labore
-                expedita aliquam, totam eos.'
-        ],
-        [
-            'id'=> 2,
-            'slug' => 'judul-artikel-2',
-            'title' => 'Judul Artikel 2',
-            'author' => 'Robi Permana',
-            'body'=> 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate explicabo
-                cupiditate cum, maiores aspernatur suscipit minima nostrum minus fugiat doloribus necessitatibus quos velit
-                deserunt iste nulla saepe hic impedit error. Nihil doloribus totam natus perferendis a cum nemo, qui, minima
-                asperiores necessitatibus atque error porro dolores ad officia harum neque.'
-                ],
-        [
-            'id'=> 3,
-            'slug' => 'judul-artikel-3',
-            'title' => 'Judul Artikel 3',
-            'author' => 'Robi Permana',
-            'body'=> 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum, fuga.'
-        ],
-    ] ;
 
-    $post = Arr::first($posts, function ($post) use($slug) {
-        return $post['slug'] == $slug;
-    });
+    $post = Post::find($slug);
 return view('post', ['title' => 'Single Post', 'post'=> $post]);
    });
 
